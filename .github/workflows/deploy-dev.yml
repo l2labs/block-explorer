@@ -8,13 +8,8 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       MODE: dev
-      DATA_FETCHER_PORT: ${{ vars.DATA_FETCHER_PORT_DEV }}
-      WORKER_PORT: ${{ vars.WORKER_PORT_DEV }}
       REMOTE_HOST: 47.243.184.31
       NAME: block-explorer-dev
       BLOCKCHAIN_RPC_URL: ${{ vars.BLOCKCHAIN_RPC_URL_DEV }}
-      DATABASE_HOST: ${{ vars.DATABASE_HOST_DEV }}
-      DATABASE_USER: ${{ vars.DATABASE_USER_DEV }}
-      DATABASE_PASSWORD: ${{ vars.DATABASE_PASSWORD_DEV }}
-      DATABASE_NAME: ${{ vars.DATABASE_NAME_DEV }}
+      CONTRACT_VERIFICATION_API_URL: ${{ vars.CONTRACT_VERIFICATION_API_URL_DEV }}
     secrets: inherit

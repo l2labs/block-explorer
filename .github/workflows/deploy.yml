@@ -7,32 +7,49 @@ on:
         required: true
         type: string
       DATA_FETCHER_PORT:
-        required: true
+        required: false
         type: string
+        default: "3040"
       WORKER_PORT:
-        required: true
+        required: false
         type: string
+        default: "3001"
+      API_PORT:
+        required: false
+        type: string
+        default: "3020"
+      API_METRICS_PORT:
+        required: false
+        type: string
+        default: "3005"
       REMOTE_HOST:
         required: true
         type: string
       BLOCKCHAIN_RPC_URL:
         required: true
         type: string
+      CONTRACT_VERIFICATION_API_URL:
+        required: true
+        type: string
       NAME:
         required: true
         type: string
       DATABASE_HOST:
-        required: true
+        required: false
         type: string
+        default: "localhost"
       DATABASE_USER:
-        required: true
+        required: false
         type: string
+        default: "postgres"
       DATABASE_PASSWORD:
-        required: true
+        required: false
         type: string
+        default: "postgres"
       DATABASE_NAME:
-        required: true
+        required: false
         type: string
+        default: "block-explorer"
     secrets:
       SSH_DEPLOY_KEY:
         required: true
@@ -76,12 +93,20 @@ jobs:
           WORKER_PORT: ${{ inputs.WORKER_PORT }}
           MODE: ${{ inputs.MODE }}
           BLOCKCHAIN_RPC_URL: ${{ inputs.BLOCKCHAIN_RPC_URL }}
+          API_PORT: ${{ inputs.API_PORT }}
+          API_METRICS_PORT: ${{ inputs.API_METRICS_PORT }}
+          DATABASE_HOST:  ${{ inputs.DATABASE_HOST }}
+          DATABASE_USER: ${{ inputs.DATABASE_USER }}
+          DATABASE_PASSWORD: ${{ inputs.DATABASE_PASSWORD }}
+          DATABASE_NAME: ${{ inputs.DATABASE_NAME }}
+          CONTRACT_VERIFICATION_API_URL: ${{ inputs.CONTRACT_VERIFICATION_API_URL }}
         with:
           host: ${{ inputs.REMOTE_HOST }}
           username: root
           key: ${{ secrets.SSH_DEPLOY_KEY }}
-          envs: DATA_FETCHER_PORT,WORKER_PORT,MODE,NAME,BLOCKCHAIN_RPC_URL
+          envs: NAME,DATA_FETCHER_PORT,WORKER_PORT,MODE,BLOCKCHAIN_RPC_URL,API_PORT,API_METRICS_PORT,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME,CONTRACT_VERIFICATION_API_URL
           script: |
             cd /data/www/${{ inputs.NAME }}
             pm2 start data-fetcher.config.js
             pm2 start worker.config.js
+            pm2 start api.config.js

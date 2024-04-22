@@ -4,10 +4,13 @@ import * as featureFlags from "./featureFlags";
 export default () => {
   const {
     NODE_ENV,
-    PORT,
-    METRICS_PORT,
+    API_PORT,
+    API_METRICS_PORT,
     COLLECT_DB_CONNECTION_POOL_METRICS_INTERVAL,
-    DATABASE_URL,
+    DATABASE_HOST,
+    DATABASE_USER,
+    DATABASE_PASSWORD,
+    DATABASE_NAME,
     DATABASE_CONNECTION_POOL_SIZE,
     DATABASE_CONNECTION_IDLE_TIMEOUT_MS,
     DATABASE_STATEMENT_TIMEOUT_MS,
@@ -32,7 +35,9 @@ export default () => {
   };
 
   const getTypeOrmModuleOptions = (): TypeOrmModuleOptions => {
-    const master = { url: DATABASE_URL || "postgres://postgres:postgres@localhost:5432/block-explorer" };
+    const master = {
+      url: `postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:5432/${DATABASE_NAME}`,
+    };
     const replicaSet = getDatabaseReplicaSet();
 
     return {
@@ -67,9 +72,9 @@ export default () => {
 
   return {
     NODE_ENV,
-    port: parseInt(PORT, 10) || 3020,
+    port: parseInt(API_PORT, 10) || 3020,
     metrics: {
-      port: parseInt(METRICS_PORT, 10) || 3005,
+      port: parseInt(API_METRICS_PORT, 10) || 3005,
       collectDbConnectionPoolMetricsInterval: parseInt(COLLECT_DB_CONNECTION_POOL_METRICS_INTERVAL, 10) || 10000,
     },
     typeORM: getTypeOrmModuleOptions(),
