@@ -50,7 +50,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
           ARGS: '-avzr --delete'
           REMOTE_HOST: ${{ inputs.REMOTE_HOST }}
-          SOURCE: packges/data-fetcher/dist/ packges/data-fetcher/node_modules/ pm2.config.js
           REMOTE_USER: root
           TARGET: /data/www/${{ inputs.NAME }}
 
