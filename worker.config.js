@@ -4,7 +4,7 @@ module.exports = {
       name: process.env.NAME + "-worker",
       exec_mode: "cluster",
       instances: 1,
-      script: "./dist/main.js",
+      script: "./packages/worker/dist/main.js",
     },
   ],
 };

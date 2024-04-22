@@ -83,5 +83,5 @@ jobs:
           envs: DATA_FETCHER_PORT,WORKER_PORT,MODE,NAME,BLOCKCHAIN_RPC_URL
           script: |
             cd /data/www/${{ inputs.NAME }}
-            pm2 start packages/data-fetcher/pm2.config.js
-            pm2 start packages/worker/pm2.config.js
+            pm2 start data-fetcher.config.js
+            pm2 start worker.config.js
