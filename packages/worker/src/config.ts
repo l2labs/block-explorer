@@ -1,8 +1,8 @@
 export default () => {
   const {
-    PORT,
+    WORKER_PORT,
+    DATA_FETCHER_PORT,
     BLOCKCHAIN_RPC_URL,
-    DATA_FETCHER_URL,
     DATA_FETCHER_REQUEST_TIMEOUT,
     RPC_CALLS_DEFAULT_RETRY_TIMEOUT,
     RPC_CALLS_QUICK_RETRY_TIMEOUT,
@@ -31,7 +31,7 @@ export default () => {
   } = process.env;
 
   return {
-    port: parseInt(PORT, 10) || 3001,
+    port: parseInt(WORKER_PORT, 10) || 3001,
     blockchain: {
       rpcUrl: BLOCKCHAIN_RPC_URL || "http://localhost:3050",
       rpcCallDefaultRetryTimeout: parseInt(RPC_CALLS_DEFAULT_RETRY_TIMEOUT, 10) || 30000,
@@ -40,7 +40,7 @@ export default () => {
       rpcCallConnectionQuickTimeout: parseInt(RPC_CALLS_CONNECTION_QUICK_TIMEOUT, 10) || 10000,
     },
     dataFetcher: {
-      url: DATA_FETCHER_URL || "http://localhost:3040",
+      url: `http://localhost:${DATA_FETCHER_PORT}`,
       requestTimeout: parseInt(DATA_FETCHER_REQUEST_TIMEOUT, 10) || 150_000,
     },
     blocks: {

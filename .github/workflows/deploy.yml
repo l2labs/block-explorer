@@ -6,7 +6,10 @@ on:
       MODE:
         required: true
         type: string
-      PORT:
+      DATA_FETCHER_PORT:
+        required: true
+        type: string
+      WORKER_PORT:
         required: true
         type: string
       REMOTE_HOST:
@@ -16,6 +19,18 @@ on:
         required: true
         type: string
       NAME:
+        required: true
+        type: string
+      DATABASE_HOST:
+        required: true
+        type: string
+      DATABASE_USER:
+        required: true
+        type: string
+      DATABASE_PASSWORD:
+        required: true
+        type: string
+      DATABASE_NAME:
         required: true
         type: string
     secrets:
@@ -57,14 +72,16 @@ jobs:
         uses: appleboy/ssh-action@v1.0.0
         env:
           NAME: ${{ inputs.NAME }}
-          PORT: ${{ inputs.PORT }}
+          DATA_FETCHER_PORT: ${{ inputs.DATA_FETCHER_PORT }}
+          WORKER_PORT: ${{ inputs.WORKER_PORT }}
           MODE: ${{ inputs.MODE }}
           BLOCKCHAIN_RPC_URL: ${{ inputs.BLOCKCHAIN_RPC_URL }}
         with:
           host: ${{ inputs.REMOTE_HOST }}
           username: root
           key: ${{ secrets.SSH_DEPLOY_KEY }}
-          envs: PORT,MODE,NAME,BLOCKCHAIN_RPC_URL
+          envs: DATA_FETCHER_PORT,WORKER_PORT,MODE,NAME,BLOCKCHAIN_RPC_URL
           script: |
             cd /data/www/${{ inputs.NAME }}
-            pm2 start pm2.config.js
+            pm2 start packages/data-fetcher/pm2.config.js
+            pm2 start packages/worker/pm2.config.js

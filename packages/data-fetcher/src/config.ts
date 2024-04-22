@@ -3,7 +3,7 @@ config();
 
 export default () => {
   const {
-    PORT,
+    DATA_FETCH_PORT,
     BLOCKCHAIN_RPC_URL,
     RPC_CALLS_DEFAULT_RETRY_TIMEOUT,
     RPC_CALLS_QUICK_RETRY_TIMEOUT,
@@ -17,7 +17,7 @@ export default () => {
   } = process.env;
 
   return {
-    port: parseInt(PORT, 10) || 3040,
+    port: parseInt(DATA_FETCH_PORT, 10) || 3040,
     blockchain: {
       rpcUrl: BLOCKCHAIN_RPC_URL || "http://localhost:3050",
 
