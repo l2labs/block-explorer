@@ -8,7 +8,7 @@ on:
         type: string
       PORT:
         required: true
-        type: number
+        type: string
       REMOTE_HOST:
         required: true
         type: string
