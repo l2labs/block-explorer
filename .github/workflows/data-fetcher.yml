@@ -1,0 +1,71 @@
+name: deploy
+
+on:
+  workflow_call:
+    inputs:
+      MODE:
+        required: true
+        type: string
+      PORT:
+        required: true
+        type: number
+      REMOTE_HOST:
+        required: true
+        type: string
+      BLOCKCHAIN_RPC_URL:
+        required: true
+        type: string
+      NAME:
+        required: true
+        type: string
+    secrets:
+      SSH_DEPLOY_KEY:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: MODE=${{ inputs.MODE }} NAME=${{ inputs.NAME }}  npm run build
+
+      - name: Copy dist to server
+        uses: easingthemes/ssh-deploy@v4.1.8
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          ARGS: '-avzr --delete'
+          REMOTE_HOST: ${{ inputs.REMOTE_HOST }}
+          SOURCE: packges/data-fetcher/dist/ packges/data-fetcher/node_modules/ pm2.config.js
+          REMOTE_USER: root
+          TARGET: /data/www/${{ inputs.NAME }}
+
+      - name: Start
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          NAME: ${{ inputs.NAME }}
+          PORT: ${{ inputs.PORT }}
+          MODE: ${{ inputs.MODE }}
+          BLOCKCHAIN_RPC_URL: ${{ inputs.BLOCKCHAIN_RPC_URL }}
+        with:
+          host: ${{ inputs.REMOTE_HOST }}
+          username: root
+          key: ${{ secrets.SSH_DEPLOY_KEY }}
+          envs: PORT,MODE,NAME,BLOCKCHAIN_RPC_URL
+          script: |
+            cd /data/www/${{ inputs.NAME }}
+            pm2 start pm2.config.js
