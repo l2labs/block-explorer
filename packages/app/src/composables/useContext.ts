@@ -4,13 +4,12 @@ import { useStorage } from "@vueuse/core";
 import * as zkSyncSdk from "zksync-web3";
 
 import useEnvironmentConfig from "./useEnvironmentConfig";
-import { DEFAULT_NETWORK } from "./useRuntimeConfig";
 
 import type { NetworkConfig } from "@/configs";
 
 import { getWindowLocation } from "@/utils/helpers";
 
-const network = useStorage("selectedNetwork_v2", DEFAULT_NETWORK.name);
+const network = useStorage("selectedNetwork_v2", "");
 const isReady = ref(false);
 
 export type Context = {
@@ -26,29 +25,20 @@ export default (): Context => {
   const environmentConfig = useEnvironmentConfig();
 
   const networks = computed<NetworkConfig[]>(() => {
-    return Array.isArray(environmentConfig.networks.value) && environmentConfig.networks.value.length
-      ? environmentConfig.networks.value
-      : [DEFAULT_NETWORK];
+    return environmentConfig.value.networks;
   });
+
   const currentNetwork = computed(() => {
-    return (
-      networks.value.find((networkEntry) => networkEntry.name === network.value) ?? networks.value[0] ?? DEFAULT_NETWORK
-    );
+    const networkName = network.value || environmentConfig.value.defaultNetworkName;
+    return networks.value.find((networkEntry) => networkEntry.name === networkName) || networks.value[0];
   });
 
   function identifyNetwork() {
     const networkFromQueryParam = new URLSearchParams(getWindowLocation().search).get("network");
-    const networkOnDomain = networks.value.find((e) => e.hostnames.includes(getWindowLocation().origin));
-    const defaultNetwork = networks.value[0] ?? DEFAULT_NETWORK;
+
     if (networkFromQueryParam) {
       network.value = networkFromQueryParam;
       // If the data from storage wasn't used or is the same
-    } else if (network.value === defaultNetwork.name) {
-      if (networkOnDomain) {
-        network.value = networkOnDomain.name;
-      } else {
-        network.value = defaultNetwork.name;
-      }
     }
 
     isReady.value = true;

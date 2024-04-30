@@ -24,7 +24,7 @@ $ npm install
 ```
 
 ### Environment configs
-Public environment configs are stored in `src/configs` folder and are named as `<appEnvironment>.config.json` where `appEnvironment` is the name of the environment set in `VITE_APP_ENVIRONMENT` env variable.
+Public environment configs are stored in `src/configs` folder and are named as `<appEnvironment>.config.json` where `appEnvironment` is the name of the environment set in `MODE` env variable.
 Currently there are 3 different environments for the project: `local`, `staging` and `production`, each with its corresponding configuration file.
 
 ### Adding a new network to the config

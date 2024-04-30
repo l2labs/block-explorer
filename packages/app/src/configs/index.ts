@@ -6,7 +6,7 @@ export type NetworkConfig = {
   rpcUrl: string;
   bridgeUrl?: string;
   l2NetworkName: string;
-  l2ChainId: 270 | 300 | 324;
+  l2ChainId: number;
   l1ExplorerUrl?: string;
   maintenance: boolean;
   published: boolean;
@@ -16,11 +16,9 @@ export type NetworkConfig = {
 
 export type EnvironmentConfig = {
   networks: NetworkConfig[];
+  defaultNetworkName: string;
 };
 
 export type RuntimeConfig = {
-  version: string;
-  sentryDSN: string;
   appEnvironment: string;
-  environmentConfig?: EnvironmentConfig;
 };

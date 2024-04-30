@@ -37,6 +37,8 @@ app.use(i18n);
 app.use(testId);
 const runtimeConfig = useRuntimeConfig();
 
+console.log("runtimeConfig", runtimeConfig);
+
 const context = useContext();
 
 const { initialize: initializeWallet } = useWallet({
@@ -50,11 +52,7 @@ const { initialize: initializeWallet } = useWallet({
 });
 initializeWallet();
 
-if (runtimeConfig.sentryDSN?.length) {
-  useSentry(app, runtimeConfig.sentryDSN, runtimeConfig.appEnvironment, runtimeConfig.version, router);
-}
-
-(process.env.NODE_ENV === "test" ? Promise.resolve() : loadEnvironmentConfig(runtimeConfig))
+loadEnvironmentConfig(runtimeConfig)
   .catch(() => null)
   .then(context.identifyNetwork);
 
