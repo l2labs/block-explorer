@@ -10,7 +10,8 @@
       "maintenance": false,
       "name": "v4",
       "published": true,
-      "rpcUrl": "https://sepolia-rpc.zkbase.app"
+      "rpcUrl": "https://sepolia-rpc.zkbase.app",
+      "verificationApiUrl": "https://sepolia-contract-verification.zkbase.app"
     }
   ],
   "defaultNetworkName": "v4"
