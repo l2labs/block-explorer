@@ -34,11 +34,16 @@ export default (): Context => {
   });
 
   function identifyNetwork() {
+    const networkOnDomain = networks.value.find((e) => e.hostnames.includes(getWindowLocation().origin));
+
     const networkFromQueryParam = new URLSearchParams(getWindowLocation().search).get("network");
 
     if (networkFromQueryParam) {
       network.value = networkFromQueryParam;
-      // If the data from storage wasn't used or is the same
+    } else if (networkOnDomain) {
+      network.value = networkOnDomain.name;
+    } else {
+      network.value = environmentConfig.value.defaultNetworkName;
     }
 
     isReady.value = true;
