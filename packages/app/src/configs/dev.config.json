@@ -16,7 +16,7 @@
     {
       "apiUrl": "https://testnet-explorer-api.zkbase.app",
       "bridgeUrl": "https://portal.zkbase.app",
-      "hostnames": ["https://explorer.zkbase.app"],
+      "hostnames": ["https://sepolia-explorer.zkbase.app"],
       "icon": "/images/icons/zksync-arrows.svg",
       "l2ChainId": 270,
       "l2NetworkName": "ZKBase Sepolia Testnet",
