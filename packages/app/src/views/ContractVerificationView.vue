@@ -587,7 +587,7 @@ async function submitForm() {
 <style lang="scss">
 .contract-verification {
   .hero-banner-container {
-    @apply h-[22rem] sm:h-72 lg:h-64;
+    @apply h-[22rem] sm:h-72 lg:h-[22rem];
   }
 }
 </style>

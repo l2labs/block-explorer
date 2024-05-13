@@ -1,7 +1,11 @@
 <template>
   <div class="home">
-    <h1 class="title">{{ t("blockExplorer.title") }}</h1>
-    <div class="subtitle">{{ t("blockExplorer.subtitle") }}</div>
+    <h1 class="title">ZKBase Block Explorer</h1>
+    <div class="subtitle">
+      ZKBase Explorer is specifically designed for the ZKBase blockchain, aiming to provide insights into transaction
+      and block information within the network. It offers a comprehensive view of the ZKBase ecosystem, including
+      transaction records, smart contract execution, and network participant activities.
+    </div>
     <SearchForm class="search-form" />
     <div class="section">
       <NetworkStats

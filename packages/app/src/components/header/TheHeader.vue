@@ -4,13 +4,11 @@
       <div class="header-container">
         <div class="logo-container">
           <router-link :to="{ name: 'home' }">
-            <span class="sr-only">zkSync</span>
-            <zk-sync-era />
+            <img class="logo" src="@/assets/zkbase.png" />
           </router-link>
         </div>
         <div class="burger-button-container">
           <PopoverButton class="burger-button">
-            <span class="sr-only">Open menu</span>
             <MenuIcon class="h-6 w-6" aria-hidden="true" />
           </PopoverButton>
         </div>
@@ -30,16 +28,6 @@
         </PopoverGroup>
         <div class="header-right-side">
           <NetworkSwitch />
-          <LocaleSwitch
-            :value="(locale as string)"
-            @update:value="changeLanguage"
-            :options="
-              ['en', 'uk'].map((value) => ({
-                value,
-                label: t(`locale.${value}`),
-              }))
-            "
-          />
           <div class="socials-container">
             <a :href="social.url" target="_blank" rel="noopener" v-for="(social, index) in socials" :key="index">
               <component :is="social.component" />
@@ -53,7 +41,7 @@
       class="hero-banner-container"
       :class="[`${currentNetwork.name}`, { 'home-banner': route.path === '/' }]"
     >
-      <hero-arrows class="hero-image" />
+      <img class="w-full" src="@/assets/bg.png" />
     </div>
     <transition
       enter-active-class="duration-200 ease-out"
@@ -67,12 +55,8 @@
         <div class="mobile-header-wrap">
           <div class="mobile-header-container">
             <div class="mobile-popover-navigation">
-              <div class="popover-zksync-logo">
-                <zk-sync class="logo" />
-              </div>
               <div class="-mr-2">
                 <PopoverButton class="close-popover-button">
-                  <span class="sr-only">Close menu</span>
                   <XIcon class="h-6 w-6" aria-hidden="true" />
                 </PopoverButton>
               </div>
@@ -142,10 +126,7 @@ import LinksPopover from "./LinksPopover.vue";
 import LocaleSwitch from "@/components/LocaleSwitch.vue";
 import NetworkSwitch from "@/components/NetworkSwitch.vue";
 import DiscordIcon from "@/components/icons/DiscordIcon.vue";
-import HeroArrows from "@/components/icons/HeroArrows.vue";
 import TwitterIcon from "@/components/icons/TwitterIcon.vue";
-import ZkSync from "@/components/icons/ZkSync.vue";
-import ZkSyncEra from "@/components/icons/ZkSyncEra.vue";
 
 import useContext from "@/composables/useContext";
 import useLocalization from "@/composables/useLocalization";
@@ -156,12 +137,7 @@ const { t, locale } = useI18n({ useScope: "global" });
 const route = useRoute();
 const { currentNetwork } = useContext();
 
-const navigation = reactive([
-  {
-    label: computed(() => t("header.nav.documentation")),
-    url: "https://docs.zksync.io/build/tooling/block-explorer/getting-started.html",
-  },
-]);
+const navigation = reactive<{ label: string; url: string }[]>([]);
 
 const blockExplorerLinks = reactive([
   {
@@ -203,8 +179,8 @@ if (currentNetwork.value.bridgeUrl) {
 const toolsLinks = reactive(links);
 
 const socials = [
-  { url: "https://join.zksync.dev/", component: DiscordIcon },
-  { url: "https://twitter.com/zksync", component: TwitterIcon },
+  { url: "https://discord.com/invite/MJKtaYcYw8", component: DiscordIcon },
+  { url: "https://twitter.com/ZKBaseOfficial", component: TwitterIcon },
 ];
 
 const hasContent = computed(() => {
@@ -225,8 +201,11 @@ const hasContent = computed(() => {
 </script>
 
 <style lang="scss">
+.logo {
+  width: 205px;
+}
 .header-popover-container {
-  @apply relative bg-primary-900;
+  @apply relative;
   .header-wrap {
     @apply container z-50;
   }
@@ -299,14 +278,14 @@ const hasContent = computed(() => {
     }
   }
   .hero-banner-container {
-    @apply absolute left-0 top-full flex h-64 w-full items-end justify-end overflow-hidden bg-primary-900;
+    @apply absolute left-0 top-0 flex h-64 w-full overflow-hidden bg-black;
 
     .hero-image {
       @apply h-5/6 w-auto;
     }
   }
   .home-banner {
-    @apply h-80;
+    height: 400px;
   }
 }
 .header-mobile-popover {

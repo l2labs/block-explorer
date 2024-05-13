@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div class="footer-container">
+    <!-- <div class="footer-container">
       <div class="links-container">
         <a v-for="item in navigation" :key="item.label" :href="item.url" target="_blank" rel="noopener">
           {{ item.label }}
@@ -9,7 +9,7 @@
       <div class="version-text-container">
         <p>{{ config.version }}</p>
       </div>
-    </div>
+    </div> -->
   </footer>
 </template>
 

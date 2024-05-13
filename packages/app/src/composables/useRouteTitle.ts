@@ -21,7 +21,7 @@ export default () => {
       param = shortValue(`${route.params.address}`);
     }
 
-    return `${t(route.meta.title as string)} ${param ? `${param} ` : ""}| ${t("document.title")}`;
+    return `${t(route.meta.title as string)} ${param ? `${param} ` : ""}| ZKBase Block Explorer`;
   });
 
   return {
