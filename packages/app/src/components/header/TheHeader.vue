@@ -268,11 +268,8 @@ const hasContent = computed(() => {
     }
   }
   .hero-banner-container {
-    @apply absolute left-0 top-0 flex h-64 w-full overflow-hidden bg-black;
-
-    .hero-image {
-      @apply h-5/6 w-auto;
-    }
+    @apply absolute left-0 top-0 pb-[5rem] flex h-64 w-full overflow-hidden bg-black;
+    box-sizing: content-box;
   }
   .home-banner {
     height: 400px;
