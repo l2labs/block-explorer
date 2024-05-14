@@ -13,16 +13,6 @@
       autocomplete="off"
       @submit.prevent="submitForm"
     >
-      <Alert type="notification" class="full-grid-width">
-        <i18n-t scope="global" keypath="contractVerification.resources.title" tag="span">
-          <template #hardhat>
-            <a href="https://docs.zksync.io/build/tooling/hardhat/hardhat-zksync-verify.html" target="_blank">
-              {{ t("contractVerification.resources.links.hardhat") }}
-            </a>
-          </template>
-        </i18n-t>
-      </Alert>
-
       <div v-if="compilationErrors.length" class="compilation-error-container">
         <div class="compilation-error">
           <ExclamationIcon class="compilation-error-icon" aria-hidden="true" />

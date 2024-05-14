@@ -24,27 +24,6 @@
           <TransferTableCell :transfer="transfer" :paymaster-address="feeData?.paymasterAddress" />
         </div>
       </div>
-      <div>
-        <a
-          class="refunded-link"
-          href="https://docs.zksync.io/build/developer-reference/fee-model.html#refunds"
-          target="_blank"
-          >{{
-            t(
-              feeData?.isPaidByPaymaster
-                ? "transactions.table.feeDetails.whyPaymasterRefunded"
-                : "transactions.table.feeDetails.whyRefunded"
-            )
-          }}</a
-        >
-        <a
-          v-if="feeData?.isPaidByPaymaster"
-          class="paymaster-link"
-          href="https://docs.zksync.io/build/developer-reference/account-abstraction.html#paymasters"
-          target="_blank"
-          >{{ t("transactions.table.feeDetails.whatIsPaymaster") }}</a
-        >
-      </div>
     </div>
   </div>
 </template>

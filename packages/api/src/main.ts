@@ -45,5 +45,7 @@ async function bootstrap() {
 
   await app.listen(configService.get<number>("port"));
   await metricsApp.listen(configService.get<number>("metrics.port"));
+
+  logger.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();
