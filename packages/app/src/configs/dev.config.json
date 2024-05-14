@@ -1,7 +1,7 @@
 {
   "networks": [
     {
-      "apiUrl": "https://testnet-explorer-api.zkbase.app",
+      "apiUrl": "https://sepolia-block-explorer-api.zkbase.app",
       "bridgeUrl": "https://portal.zkbase.app",
       "hostnames": [
         "https://sepolia-explorer.zkbase.app"
