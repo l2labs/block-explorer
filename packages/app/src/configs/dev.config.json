@@ -6,7 +6,7 @@
       "hostnames": [
         "https://sepolia-explorer.zkbase.app"
       ],
-      "icon": "/images/icons/zksync-arrows.svg",
+      "icon": "/images/icons/zkbase.png",
       "l2ChainId": 270,
       "l2NetworkName": "ZKBase Sepolia Testnet",
       "maintenance": false,
