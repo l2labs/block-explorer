@@ -65,13 +65,13 @@ export default () => {
       disableCountersProcessing: DISABLE_COUNTERS_PROCESSING === "true",
     },
     tokens: {
-      enableTokenOffChainDataSaver: ENABLE_TOKEN_OFFCHAIN_DATA_SAVER === "true",
+      enableTokenOffChainDataSaver: ENABLE_TOKEN_OFFCHAIN_DATA_SAVER !== "false",
       updateTokenOffChainDataInterval: parseInt(UPDATE_TOKEN_OFFCHAIN_DATA_INTERVAL, 10) || 86_400_000,
       tokenOffChainDataProviders: ["coingecko", "portalsFi"],
       selectedTokenOffChainDataProvider: SELECTED_TOKEN_OFFCHAIN_DATA_PROVIDER || "coingecko",
       coingecko: {
         isProPlan: COINGECKO_IS_PRO_PLAN === "true",
-        apiKey: COINGECKO_API_KEY,
+        apiKey: COINGECKO_API_KEY || "CG-RLrzukzDWBPVSwqUgL6gwoZa",
       },
     },
     metrics: {
