@@ -25,6 +25,9 @@ on:
         required: false
         type: string
         default: 'block-explorer'
+    secrets:
+      SSH_DEPLOY_KEY:
+        required: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
