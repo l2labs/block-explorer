@@ -1,19 +1,19 @@
 {
   "networks": [
     {
-      "apiUrl": "https://sepolia-block-explorer-api.zkbase.app",
+      "apiUrl": "https://alpha-sepolia-explorer-api.zkbase.app",
       "bridgeUrl": "https://portal.zkbase.app",
       "hostnames": [
-        "https://sepolia-explorer.zkbase.app"
+        "https://alpha-sepolia-explorer.zkbase.app"
       ],
       "icon": "/images/icons/zkbase.png",
       "l2ChainId": 270,
-      "l2NetworkName": "ZKBase Sepolia Testnet",
+      "l2NetworkName": "ZKBase Sepolia Testnet alpha",
       "maintenance": false,
-      "name": "ZKBase Sepolia Testnet",
+      "name": "ZKBase Sepolia Testnet alpha",
       "published": true,
-      "rpcUrl": "https://sepolia-rpc.zkbase.app",
-      "verificationApiUrl": "https://sepolia-contract-verification.zkbase.app"
+      "rpcUrl": "https://alpha-sepolia-rpc.zkbase.app",
+      "verificationApiUrl": "https://alpha-sepolia-contract-verification.zkbase.app"
     }
   ],
   "defaultNetworkName": "ZKBase Mainnet"
