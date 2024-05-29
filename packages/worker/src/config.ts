@@ -1,7 +1,7 @@
 export default () => {
   const {
     WORKER_PORT,
-    DATA_FETCHER_PORT,
+    DATA_FETCH_PORT,
     BLOCKCHAIN_RPC_URL,
     DATA_FETCHER_REQUEST_TIMEOUT,
     RPC_CALLS_DEFAULT_RETRY_TIMEOUT,
@@ -40,7 +40,7 @@ export default () => {
       rpcCallConnectionQuickTimeout: parseInt(RPC_CALLS_CONNECTION_QUICK_TIMEOUT, 10) || 10000,
     },
     dataFetcher: {
-      url: `http://localhost:${DATA_FETCHER_PORT}`,
+      url: `http://localhost:${DATA_FETCH_PORT}`,
       requestTimeout: parseInt(DATA_FETCHER_REQUEST_TIMEOUT, 10) || 150_000,
     },
     blocks: {

@@ -6,22 +6,22 @@ on:
       MODE:
         required: true
         type: string
-      DATA_FETCHER_PORT:
+      DATA_FETCH_PORT:
         required: false
         type: string
-        default: "3040"
+        default: '3040'
       WORKER_PORT:
         required: false
         type: string
-        default: "3001"
+        default: '3001'
       API_PORT:
         required: false
         type: string
-        default: "3020"
+        default: '3020'
       API_METRICS_PORT:
         required: false
         type: string
-        default: "3005"
+        default: '3005'
       REMOTE_HOST:
         required: true
         type: string
@@ -37,19 +37,19 @@ on:
       DATABASE_HOST:
         required: false
         type: string
-        default: "localhost"
+        default: 'localhost'
       DATABASE_USER:
         required: false
         type: string
-        default: "postgres"
+        default: 'postgres'
       DATABASE_PASSWORD:
         required: false
         type: string
-        default: "postgres"
+        default: 'postgres'
       DATABASE_NAME:
         required: false
         type: string
-        default: "block-explorer"
+        default: 'block-explorer'
     secrets:
       SSH_DEPLOY_KEY:
         required: true
@@ -89,13 +89,13 @@ jobs:
         uses: appleboy/ssh-action@v1.0.0
         env:
           NAME: ${{ inputs.NAME }}
-          DATA_FETCHER_PORT: ${{ inputs.DATA_FETCHER_PORT }}
+          DATA_FETCH_PORT: ${{ inputs.DATA_FETCH_PORT }}
           WORKER_PORT: ${{ inputs.WORKER_PORT }}
           MODE: ${{ inputs.MODE }}
           BLOCKCHAIN_RPC_URL: ${{ inputs.BLOCKCHAIN_RPC_URL }}
           API_PORT: ${{ inputs.API_PORT }}
           API_METRICS_PORT: ${{ inputs.API_METRICS_PORT }}
-          DATABASE_HOST:  ${{ inputs.DATABASE_HOST }}
+          DATABASE_HOST: ${{ inputs.DATABASE_HOST }}
           DATABASE_USER: ${{ inputs.DATABASE_USER }}
           DATABASE_PASSWORD: ${{ inputs.DATABASE_PASSWORD }}
           DATABASE_NAME: ${{ inputs.DATABASE_NAME }}
@@ -104,7 +104,7 @@ jobs:
           host: ${{ inputs.REMOTE_HOST }}
           username: root
           key: ${{ secrets.SSH_DEPLOY_KEY }}
-          envs: NAME,DATA_FETCHER_PORT,WORKER_PORT,MODE,BLOCKCHAIN_RPC_URL,API_PORT,API_METRICS_PORT,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME,CONTRACT_VERIFICATION_API_URL
+          envs: NAME,DATA_FETCH_PORT,WORKER_PORT,MODE,BLOCKCHAIN_RPC_URL,API_PORT,API_METRICS_PORT,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME,CONTRACT_VERIFICATION_API_URL
           script: |
             cd /data/www/${{ inputs.NAME }}
             pm2 start data-fetcher.config.js
