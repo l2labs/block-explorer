@@ -1,0 +1,57 @@
+name: Refresh
+
+on:
+  workflow_call:
+    inputs:
+      NAME:
+        required: true
+        type: string
+      REMOTE_HOST:
+        required: true
+        type: string
+      DATABASE_HOST:
+        required: false
+        type: string
+        default: 'localhost'
+      DATABASE_USER:
+        required: false
+        type: string
+        default: 'postgres'
+      DATABASE_PASSWORD:
+        required: false
+        type: string
+        default: 'postgres'
+      DATABASE_NAME:
+        required: false
+        type: string
+        default: 'block-explorer'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Start
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          NAME: ${{ inputs.NAME }}
+          DATABASE_HOST: ${{ inputs.DATABASE_HOST }}
+          DATABASE_USER: ${{ inputs.DATABASE_USER }}
+          DATABASE_PASSWORD: ${{ inputs.DATABASE_PASSWORD }}
+          DATABASE_NAME: ${{ inputs.DATABASE_NAME }}
+
+        with:
+          host: ${{ inputs.REMOTE_HOST }}
+          username: root
+          key: ${{ secrets.SSH_DEPLOY_KEY }}
+          envs: NAME,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME
+          script: |
+            pm2 stop ${{ inputs.NAME }}-api ${{ inputs.NAME }}-worker ${{ inputs.NAME }}-data-fetcher
+            cd /data/www/${{ inputs.NAME }}/packages/worker
+            yarn run db:drop
+            yarn run db:create
+            yarn run migration:run
+            pm2 start ${{ inputs.NAME }}-api ${{ inputs.NAME }}-worker ${{ inputs.NAME }}-data-fetcher
