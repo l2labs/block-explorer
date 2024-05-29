@@ -1,4 +1,4 @@
-name: Deploy Dev
+name: Deploy Testnet
 
 on:
   workflow_dispatch:
@@ -9,12 +9,7 @@ jobs:
     with:
       MODE: dev
       REMOTE_HOST: 47.243.184.31
-      NAME: block-explorer-dev
+      NAME: block-explorer-testnet
       BLOCKCHAIN_RPC_URL: https://sepolia-rpc.zkbase.app
       CONTRACT_VERIFICATION_API_URL: https://sepolia-contract-verification.zkbase.app
-      DATA_FETCHER_PORT: '4040'
-      WORKER_PORT: '4001'
-      API_PORT: '4020'
-      API_METRICS_PORT: '4005'
-      DATABASE_NAME: 'block-explorer-alpha'
     secrets: inherit
