@@ -195,7 +195,7 @@ const hasContent = computed(() => {
   width: 205px;
 }
 .header-popover-container {
-  @apply relative;
+  @apply relative bg-black;
   .header-wrap {
     @apply container z-50;
   }
