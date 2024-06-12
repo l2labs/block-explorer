@@ -1,0 +1,15 @@
+name: Deploy Prod
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      MODE: prod
+      REMOTE_HOST: 8.218.199.199
+      NAME: block-explorer-prod
+      BLOCKCHAIN_RPC_URL: https://mainnet-rpc.zkbase.app
+      CONTRACT_VERIFICATION_API_URL: https://mainnet-contract-verification.zkbase.app
+    secrets: inherit
