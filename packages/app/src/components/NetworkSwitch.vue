@@ -61,7 +61,7 @@ const selected = computed(() => {
 const getNetworkUrl = (network: NetworkConfig) => {
   const hostname = getWindowLocation().hostname;
 
-  if (hostname === "localhost") {
+  if (hostname === "localhost" || network.hostnames.length === 0) {
     return `${route.path}?network=${network.name}`;
   }
   return network.hostnames[0] + route.path;

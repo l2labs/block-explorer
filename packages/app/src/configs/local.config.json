@@ -18,9 +18,7 @@
     {
       "apiUrl": "https://block-explorer-api.zkbase.app",
       "bridgeUrl": "https://portal.zkbase.app",
-      "hostnames": [
-        "https://explorer.zkbase.app"
-      ],
+      "hostnames": [],
       "icon": "/images/icons/zkbase.png",
       "l2ChainId": 1456,
       "l2NetworkName": "ZKBase Mainnet",
@@ -31,5 +29,5 @@
       "verificationApiUrl": "https://mainnet-contract-verification.zkbase.app"
     }
   ],
-  "defaultNetworkName": "ZKBase Mainnet"
+  "defaultNetworkName": "ZKBase Sepolia Testnet"
 }
