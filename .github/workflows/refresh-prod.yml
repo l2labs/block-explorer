@@ -1,0 +1,12 @@
+name: Refresh Prod
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    uses: ./.github/workflows/refresh.yml
+    with:
+      REMOTE_HOST: 8.218.199.199
+      NAME: block-explorer-prod
+    secrets: inherit
