@@ -11,6 +11,7 @@ export default () => {
     DATABASE_USER,
     DATABASE_PASSWORD,
     DATABASE_NAME,
+    DATABASE_PORT,
     DATABASE_CONNECTION_POOL_SIZE,
     DATABASE_CONNECTION_IDLE_TIMEOUT_MS,
     DATABASE_STATEMENT_TIMEOUT_MS,
@@ -36,8 +37,11 @@ export default () => {
 
   const getTypeOrmModuleOptions = (): TypeOrmModuleOptions => {
     const master = {
-      url: `postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:5432/${DATABASE_NAME}`,
+      url: `postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@${DATABASE_HOST}:${
+        DATABASE_PORT || 5432
+      }/${DATABASE_NAME}`,
     };
+
     const replicaSet = getDatabaseReplicaSet();
 
     return {
