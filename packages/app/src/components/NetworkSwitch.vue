@@ -21,7 +21,7 @@
           <li class="network-list-item-container" :class="{ active, selected }">
             <component
               :is="selected ? 'label' : 'a'"
-              :href="getNetworkUrl(network)"
+              @click="switchNetwork(network)"
               class="network-list-item"
               :class="{ selected }"
             >
@@ -66,6 +66,12 @@ const getNetworkUrl = (network: NetworkConfig) => {
   }
   return network.hostnames[0] + route.path;
 };
+
+function switchNetwork(network: NetworkConfig) {
+  const url = getNetworkUrl(network);
+  sessionStorage.setItem("network", network.name);
+  location.href = url;
+}
 </script>
 
 <style scoped lang="scss">
