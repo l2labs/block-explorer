@@ -3,9 +3,7 @@
     {
       "apiUrl": "https://alpha-sepolia-explorer-api.zkbase.app",
       "bridgeUrl": "https://portal.zkbase.app",
-      "hostnames": [
-        "https://alpha-sepolia-explorer.zkbase.app"
-      ],
+      "hostnames": [],
       "icon": "/images/icons/zkbase.png",
       "l2ChainId": 270,
       "l2NetworkName": "ZKBase Sepolia Testnet alpha",
