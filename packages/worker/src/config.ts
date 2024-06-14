@@ -45,7 +45,7 @@ export default () => {
     },
     blocks: {
       waitForBlocksInterval: parseInt(WAIT_FOR_BLOCKS_INTERVAL, 10) || 1000,
-      blocksProcessingBatchSize: parseInt(BLOCKS_PROCESSING_BATCH_SIZE, 10) || 50,
+      blocksProcessingBatchSize: parseInt(BLOCKS_PROCESSING_BATCH_SIZE, 10) || 100,
       fromBlock: parseInt(FROM_BLOCK, 10) || 0,
       toBlock: parseInt(TO_BLOCK, 10) || null,
       disableBlocksRevert: DISABLE_BLOCKS_REVERT === "true",
