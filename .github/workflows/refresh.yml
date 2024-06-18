@@ -13,6 +13,10 @@ on:
         required: false
         type: string
         default: '22'
+      TARGET_PATH:
+        required: false
+        type: string
+        default: '/data/www/'
       DATABASE_HOST:
         required: false
         type: string
@@ -57,7 +61,7 @@ jobs:
           envs: NAME,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME
           script: |
             pm2 stop ${{ inputs.NAME }}-api ${{ inputs.NAME }}-worker ${{ inputs.NAME }}-data-fetcher
-            cd /data/www/${{ inputs.NAME }}/packages/worker
+            cd ${{ inputs.TARGET_PATH }}${{ inputs.NAME }}/packages/worker
             yarn run db:drop
             yarn run db:create
             yarn run migration:run
