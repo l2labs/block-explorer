@@ -29,6 +29,10 @@ on:
         required: false
         type: string
         default: '22'
+      REMOTE_USER:
+        required: false
+        type: string
+        default: 'root'
       TARGET_PATH:
         required: false
         type: string
@@ -90,7 +94,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
           ARGS: '-avzr --delete'
           REMOTE_HOST: ${{ inputs.REMOTE_HOST }}
-          REMOTE_USER: root
+          REMOTE_USER: ${{ inputs.REMOTE_USER }}
           REMOTE_PORT: ${{ inputs.REMOTE_PORT }}
           TARGET: ${{ inputs.TARGET_PATH }}${{ inputs.NAME }}
 
@@ -112,7 +116,7 @@ jobs:
         with:
           host: ${{ inputs.REMOTE_HOST }}
           port: ${{ inputs.REMOTE_PORT }}
-          username: root
+          username: ${{ inputs.REMOTE_USER }}
           key: ${{ secrets.SSH_DEPLOY_KEY }}
           envs: NAME,DATA_FETCH_PORT,WORKER_PORT,MODE,BLOCKCHAIN_RPC_URL,API_PORT,API_METRICS_PORT,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME,CONTRACT_VERIFICATION_API_URL
           script: |
