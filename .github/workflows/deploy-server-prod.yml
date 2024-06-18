@@ -5,7 +5,7 @@ on:
 
 jobs:
   job1:
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/deploy-server.yml
     with:
       MODE: prod
       REMOTE_HOST: 8.218.199.199

@@ -25,6 +25,14 @@ on:
       REMOTE_HOST:
         required: true
         type: string
+      REMOTE_PORT:
+        required: false
+        type: string
+        default: '22'
+      TARGET_PATH:
+        required: false
+        type: string
+        default: '/data/www/'
       BLOCKCHAIN_RPC_URL:
         required: true
         type: string
@@ -83,7 +91,8 @@ jobs:
           ARGS: '-avzr --delete'
           REMOTE_HOST: ${{ inputs.REMOTE_HOST }}
           REMOTE_USER: root
-          TARGET: /data/www/${{ inputs.NAME }}
+          REMOTE_PORT: ${{ inputs.REMOTE_PORT }}
+          TARGET: ${{ inputs.TARGET_PATH }}${{ inputs.NAME }}
 
       - name: Start
         uses: appleboy/ssh-action@v1.0.0
@@ -102,11 +111,12 @@ jobs:
           CONTRACT_VERIFICATION_API_URL: ${{ inputs.CONTRACT_VERIFICATION_API_URL }}
         with:
           host: ${{ inputs.REMOTE_HOST }}
+          port: ${{ inputs.REMOTE_PORT }}
           username: root
           key: ${{ secrets.SSH_DEPLOY_KEY }}
           envs: NAME,DATA_FETCH_PORT,WORKER_PORT,MODE,BLOCKCHAIN_RPC_URL,API_PORT,API_METRICS_PORT,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME,CONTRACT_VERIFICATION_API_URL
           script: |
-            cd /data/www/${{ inputs.NAME }}
+            cd ${{ inputs.TARGET_PATH }}${{ inputs.NAME }}
             pm2 start data-fetcher.config.js
             pm2 start worker.config.js
             pm2 start api.config.js

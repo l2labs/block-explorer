@@ -5,16 +5,18 @@ on:
 
 jobs:
   job1:
-    uses: ./.github/workflows/deploy.yml
+    uses: ./.github/workflows/deploy-server.yml
     with:
       MODE: dev
-      REMOTE_HOST: 47.243.184.31
+      REMOTE_HOST: xj3-2-1.s.filfox.io
       NAME: block-explorer-dev
-      BLOCKCHAIN_RPC_URL: https://alpha-sepolia-rpc.zkbase.app
+      BLOCKCHAIN_RPC_URL: http://172.18.53.84:3050
       CONTRACT_VERIFICATION_API_URL: https://alpha-sepolia-contract-verification.zkbase.app
       DATA_FETCH_PORT: '4040'
       WORKER_PORT: '4001'
       API_PORT: '4020'
       API_METRICS_PORT: '4005'
       DATABASE_NAME: 'block-explorer-alpha'
+      REMOTE_PORT: '17011'
+      TARGET_PATH: '/mnt/md0/data/www/'
     secrets: inherit

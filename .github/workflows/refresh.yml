@@ -9,6 +9,10 @@ on:
       REMOTE_HOST:
         required: true
         type: string
+      REMOTE_PORT:
+        required: false
+        type: string
+        default: '22'
       DATABASE_HOST:
         required: false
         type: string
@@ -45,9 +49,9 @@ jobs:
           DATABASE_USER: ${{ inputs.DATABASE_USER }}
           DATABASE_PASSWORD: ${{ inputs.DATABASE_PASSWORD }}
           DATABASE_NAME: ${{ inputs.DATABASE_NAME }}
-
         with:
           host: ${{ inputs.REMOTE_HOST }}
+          port: ${{ inputs.REMOTE_PORT }}
           username: root
           key: ${{ secrets.SSH_DEPLOY_KEY }}
           envs: NAME,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME
