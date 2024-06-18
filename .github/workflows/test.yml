@@ -21,4 +21,5 @@ jobs:
           key: ${{ secrets.SSH_DEPLOY_KEY }}
           script: |
             echo $PATH
+            node -v
             pm2 list
