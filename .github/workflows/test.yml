@@ -1,0 +1,23 @@
+name: Test ssh
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Start
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: 'xj3-2-1.s.filfox.io'
+          port: '17011'
+          username: 'ps'
+          key: ${{ secrets.SSH_DEPLOY_KEY }}
+          script: |
+            echo $PATH
