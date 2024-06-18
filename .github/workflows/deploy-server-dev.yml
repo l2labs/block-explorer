@@ -20,4 +20,5 @@ jobs:
       REMOTE_PORT: '17011'
       TARGET_PATH: '/mnt/md0/www/'
       REMOTE_USER: 'ps'
+      PREPARE_SCRIPT: 'PATH=$PATH:/home/ps/.nvm/versions/node/v18.20.3/bin'
     secrets: inherit

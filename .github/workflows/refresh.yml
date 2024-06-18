@@ -37,6 +37,10 @@ on:
         required: false
         type: string
         default: 'block-explorer'
+      PREPARE_SCRIPT:
+        required: false
+        type: string
+        default: ''
     secrets:
       SSH_DEPLOY_KEY:
         required: true
@@ -64,6 +68,7 @@ jobs:
           key: ${{ secrets.SSH_DEPLOY_KEY }}
           envs: NAME,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME
           script: |
+            ${{ inputs.PREPARE_SCRIPT }}
             pm2 stop ${{ inputs.NAME }}-api ${{ inputs.NAME }}-worker ${{ inputs.NAME }}-data-fetcher
             cd ${{ inputs.TARGET_PATH }}${{ inputs.NAME }}/packages/worker
             yarn run db:drop
