@@ -25,6 +25,10 @@ on:
         required: false
         type: string
         default: 'postgres'
+      REMOTE_USER:
+        required: false
+        type: string
+        default: 'root'
       DATABASE_PASSWORD:
         required: false
         type: string
@@ -56,7 +60,7 @@ jobs:
         with:
           host: ${{ inputs.REMOTE_HOST }}
           port: ${{ inputs.REMOTE_PORT }}
-          username: root
+          username: ${{ inputs.REMOTE_USER }}
           key: ${{ secrets.SSH_DEPLOY_KEY }}
           envs: NAME,DATABASE_HOST,DATABASE_USER,DATABASE_PASSWORD,DATABASE_NAME
           script: |

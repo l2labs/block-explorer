@@ -18,6 +18,6 @@ jobs:
       API_METRICS_PORT: '4005'
       DATABASE_NAME: 'block-explorer-alpha'
       REMOTE_PORT: '17011'
-      TARGET_PATH: '/mnt/md0/data/www/'
+      TARGET_PATH: '/mnt/md0/www/'
       REMOTE_USER: 'ps'
     secrets: inherit
