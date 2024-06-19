@@ -12,6 +12,10 @@ jobs:
       NAME: block-explorer-prod
       BLOCKCHAIN_RPC_URL: http://172.18.53.81:3050
       CONTRACT_VERIFICATION_API_URL: https://mainnet-contract-verification.zkbase.app
+      DATA_FETCH_PORT: '5040'
+      WORKER_PORT: '5001'
+      API_PORT: '5020'
+      API_METRICS_PORT: '5005'
       REMOTE_PORT: '17011'
       TARGET_PATH: '/mnt/md0/www/'
       REMOTE_USER: 'ps'
