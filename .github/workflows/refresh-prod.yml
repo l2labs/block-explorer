@@ -7,6 +7,11 @@ jobs:
   job1:
     uses: ./.github/workflows/refresh.yml
     with:
-      REMOTE_HOST: 8.218.199.199
+      REMOTE_HOST: xj3-2-1.s.filfox.io
       NAME: block-explorer-prod
+      REMOTE_PORT: '17011'
+      TARGET_PATH: '/mnt/md0/www/'
+      REMOTE_USER: 'ps'
+      PREPARE_SCRIPT: 'PATH=$PATH:/home/ps/.nvm/versions/node/v18.20.3/bin'
+      DATABASE_NAME: 'block-explorer-prod'
     secrets: inherit
