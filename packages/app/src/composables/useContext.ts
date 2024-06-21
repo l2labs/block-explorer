@@ -38,12 +38,8 @@ export default (): Context => {
 
     const networkFromQueryParam = new URLSearchParams(getWindowLocation().search).get("network");
 
-    const networkFromStorage = sessionStorage.getItem("network");
-
     if (networkFromQueryParam) {
       network.value = networkFromQueryParam;
-    } else if (networkFromStorage) {
-      network.value = networkFromStorage;
     } else if (networkOnDomain) {
       network.value = networkOnDomain.name;
     } else {

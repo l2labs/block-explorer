@@ -69,7 +69,6 @@ const getNetworkUrl = (network: NetworkConfig) => {
 
 function switchNetwork(network: NetworkConfig) {
   const url = getNetworkUrl(network);
-  sessionStorage.setItem("network", network.name);
   location.href = url;
 }
 </script>
