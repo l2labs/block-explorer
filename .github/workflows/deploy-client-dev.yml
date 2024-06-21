@@ -1,0 +1,13 @@
+name: Deploy Client Dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    uses: ./.github/workflows/deploy-client.yml
+    with:
+      MODE: dev
+      REMOTE_HOST: 47.243.184.31
+      NAME: block-explorer-dev
+    secrets: inherit
