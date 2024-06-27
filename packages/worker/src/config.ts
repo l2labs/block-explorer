@@ -66,7 +66,7 @@ export default () => {
     },
     tokens: {
       enableTokenOffChainDataSaver: ENABLE_TOKEN_OFFCHAIN_DATA_SAVER !== "false",
-      updateTokenOffChainDataInterval: parseInt(UPDATE_TOKEN_OFFCHAIN_DATA_INTERVAL, 10) || 86_400_000,
+      updateTokenOffChainDataInterval: parseInt(UPDATE_TOKEN_OFFCHAIN_DATA_INTERVAL, 10) || 3_600_000,
       tokenOffChainDataProviders: ["coingecko", "portalsFi"],
       selectedTokenOffChainDataProvider: SELECTED_TOKEN_OFFCHAIN_DATA_PROVIDER || "coingecko",
       coingecko: {
