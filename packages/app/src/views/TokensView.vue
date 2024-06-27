@@ -15,7 +15,7 @@
       <span v-if="isTokensFailed" class="error-message">
         {{ t("failedRequest") }}
       </span>
-      <TokenTable :tokens="tokens" :loading="isTokensPending"></TokenTable>
+      <TokenTable :tokens="displayedTokens" :loading="isTokensPending"></TokenTable>
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
+import { useRoute } from "vue-router";
 
 import SearchForm from "@/components/SearchForm.vue";
 import Breadcrumbs, { type BreadcrumbItem } from "@/components/common/Breadcrumbs.vue";
@@ -30,7 +31,13 @@ import TokenTable from "@/components/token/TokenListTable.vue";
 
 import useTokenLibrary from "@/composables/useTokenLibrary";
 
+const route = useRoute();
+
 const { tokens, isRequestPending: isTokensPending, isRequestFailed: isTokensFailed, getTokens } = useTokenLibrary();
+
+const displayedTokens = computed(() => {
+  return route.query.all === "1" ? tokens.value : tokens.value.filter((token) => token.symbol !== "ZKSWAP");
+});
 
 const { t } = useI18n();
 const breadcrumbItems = computed((): BreadcrumbItem[] => [
