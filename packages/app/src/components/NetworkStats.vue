@@ -78,7 +78,7 @@ defineProps({
 });
 
 const subtitle = computed(() =>
-  ["ZKBase Mainnet"].indexOf(currentNetwork.value.name)
+  ["ZKBase Mainnet"].indexOf(currentNetwork.value.name) !== -1
     ? t("networkStats.subtitleMainnet")
     : t("networkStats.subtitleTestnet")
 );
