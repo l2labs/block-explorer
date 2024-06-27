@@ -53,7 +53,6 @@ export class CoingeckoTokenOffChainDataProvider implements TokenOffChainDataProv
     const supportedTokens = tokensList.filter(
       (token) =>
         token.id === "ethereum" ||
-        token.platforms.zksync ||
         bridgedTokensToInclude.find((bridgetTokenAddress) => bridgetTokenAddress === token.platforms.ethereum)
     );
 
@@ -68,7 +67,6 @@ export class CoingeckoTokenOffChainDataProvider implements TokenOffChainDataProv
             const token = supportedTokens.find((t) => t.id === tokenMarketData.id);
             return {
               l1Address: token.id === "ethereum" ? utils.ETH_ADDRESS : token.platforms.ethereum,
-              l2Address: token.platforms.zksync,
               liquidity: tokenMarketData.market_cap,
               usdPrice: tokenMarketData.current_price,
               iconURL: tokenMarketData.image,
@@ -105,12 +103,11 @@ export class CoingeckoTokenOffChainDataProvider implements TokenOffChainDataProv
       return [];
     }
     return list
-      .filter((item) => item.id === "ethereum" || item.platforms.zksync || item.platforms.ethereum)
+      .filter((item) => item.id === "ethereum" || item.platforms.ethereum)
       .map((item) => ({
         ...item,
         platforms: {
           // use substring(0, 42) to fix some instances when after address there is some additional text
-          zksync: item.platforms.zksync?.substring(0, 42),
           ethereum: item.platforms.ethereum?.substring(0, 42),
         },
       }));
