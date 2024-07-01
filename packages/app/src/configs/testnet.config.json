@@ -4,7 +4,7 @@
       "apiUrl": "https://block-explorer-api.zkbase.app",
       "bridgeUrl": "https://portal.zkbase.app",
       "hostnames": [
-        "https://mainnet-explorer.zkbase.app"
+        "https://explorer.zkbase.app"
       ],
       "icon": "/images/icons/zkbase.png",
       "l2ChainId": 1456,
